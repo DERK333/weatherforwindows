@@ -15,7 +15,9 @@
     "lint": "tsc --noEmit",
     "electron:build": "tsc -p tsconfig.electron.json",
     "electron:dev": "npm run build && npm run electron:build && electron dist-electron/main.js",
-    "electron:pack": "npm run build && npm run electron:build && electron-builder --win"
+    "electron:pack": "npm run build && npm run electron:build && electron-builder --win",
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "npm run build && wrangler dev"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
@@ -31,6 +33,7 @@
     "vite": "^6.2.3"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.44.0",
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
     "autoprefixer": "^10.4.21",
@@ -40,7 +43,8 @@
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.3"
+    "vite": "^6.2.3",
+    "wrangler": "^4.110.0"
   },
   "allowScripts": {
     "electron@36.9.5": true,
