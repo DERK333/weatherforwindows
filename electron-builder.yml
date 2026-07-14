@@ -1,0 +1,83 @@
+appId: UWPWeatherForecast.App
+productName: UWP Weather Forecast
+copyright: Copyright © 2024 Derrick Samuel Development
+
+# Files to include in the package
+files:
+  - dist/**/*          # Vite-built React frontend
+  - dist-electron/**/* # Compiled Electron main + preload
+  - assets/**/*
+  - node_modules/**/*
+  - package.json
+
+# Electron entry point (compiled from electron/main.ts)
+main: dist-electron/main.js
+
+directories:
+  output: release
+  buildResources: assets
+
+# -----------------------------------------------------------------------
+# Windows targets
+# -----------------------------------------------------------------------
+win:
+  icon: assets/icons/icon.ico
+  publisherName: Derrick Samuel Development
+  # Sign with a certificate for Store submission.
+  # Set WINDOWS_CERTIFICATE_FILE and WINDOWS_CERTIFICATE_PASSWORD env vars,
+  # or use Azure Trusted Signing for Store submission.
+  # certificateFile: ${env.WINDOWS_CERTIFICATE_FILE}
+  # certificatePassword: ${env.WINDOWS_CERTIFICATE_PASSWORD}
+  target:
+    - target: msix
+      arch:
+        - x64
+    - target: nsis
+      arch:
+        - x64
+
+# -----------------------------------------------------------------------
+# MSIX — Microsoft Store package
+# -----------------------------------------------------------------------
+msix:
+  # Replace these values with your real Partner Center identity before submitting.
+  identityName: UWPWeatherForecast.App
+  publisher: CN=4697F8B6-8C38-4C8B-8833-FE66EEFDEF0B
+  publisherDisplayName: Derrick Samuel Development
+  applicationId: UWPWeatherForecast
+  displayName: UWP Weather Forecast
+  backgroundColor: "#0078d4"
+  # Square tile icons
+  square150x150Logo: assets/icons/Square150x150Logo.png
+  square44x44Logo: assets/icons/Square44x44Logo.png
+  # Wide / large tile icons
+  wide310x150Logo: assets/icons/Wide310x150Logo.png
+  square310x310Logo: assets/icons/Square310x310Logo.png
+  # Store logo
+  storeLogo: assets/icons/StoreLogo.png
+
+# -----------------------------------------------------------------------
+# NSIS installer (sideloading / direct download)
+# -----------------------------------------------------------------------
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  installerIcon: assets/icons/icon.ico
+  uninstallerIcon: assets/icons/icon.ico
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: UWP Weather Forecast
+
+# -----------------------------------------------------------------------
+# macOS (optional — build on macOS CI if needed)
+# -----------------------------------------------------------------------
+mac:
+  icon: assets/icons/icon.icns
+  category: public.app-category.weather
+  target:
+    - dmg
+
+# -----------------------------------------------------------------------
+# Publishing (set to update once you have a release channel)
+# -----------------------------------------------------------------------
+publish: null

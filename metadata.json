@@ -1,0 +1,6 @@
+{
+  "name": "UWP Weather Forecast",
+  "description": "A Windows PC weather forecast app designed according to Fluent Design and UWP guidelines.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
